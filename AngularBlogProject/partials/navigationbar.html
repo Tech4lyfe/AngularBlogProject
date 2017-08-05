@@ -1,0 +1,6 @@
+﻿<div class="navbar navbar-inverse bg-inverse">
+    <a href="#/" class="navbar-brand">My Blog</a>
+    <ul class="nav navbar-nav">
+        <li ng-repeat="page in pages"><a href="#/page/{{ pages.indexOf(page) }}">{{ page.title }}</a></li>
+    </ul>
+</div>

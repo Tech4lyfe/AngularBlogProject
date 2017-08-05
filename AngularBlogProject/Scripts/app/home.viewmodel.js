@@ -11,10 +11,10 @@
                 url: app.dataModel.userInfoUrl,
                 contentType: "application/json; charset=utf-8",
                 headers: {
-                    'Authorization': 'Bearer ' + app.dataModel.getAccessToken()
+                    'Authorization': 'Bearer '  app.dataModel.getAccessToken()
                 },
                 success: function (data) {
-                    self.myHometown('Your Hometown is : ' + data.hometown);
+                    self.myHometown('Your Hometown is : '  data.hometown);
                 }
             });
         });

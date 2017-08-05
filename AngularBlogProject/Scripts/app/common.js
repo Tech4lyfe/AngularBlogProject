@@ -20,7 +20,7 @@ window.common = (function () {
 
         pairs = queryString.split("&");
 
-        for (var i = 0; i < pairs.length; i++) {
+        for (var i = 0; i < pairs.length; i) {
             pair = pairs[i];
             separatorIndex = pair.indexOf("=");
 
@@ -29,7 +29,7 @@ window.common = (function () {
                 escapedValue = null;
             } else {
                 escapedKey = pair.substr(0, separatorIndex);
-                escapedValue = pair.substr(separatorIndex + 1);
+                escapedValue = pair.substr(separatorIndex  1);
             }
 
             key = decodeURIComponent(escapedKey);
