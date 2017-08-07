@@ -5,7 +5,8 @@ myapp.config(function ($routeProvider, $locationProvider) {
     .when("/",
     {
         templateUrl: "Views/post.html",
-        controller:"postController"
+        controller: "postController"
+       
 
     }).when("/post/:id",
     {
@@ -17,7 +18,21 @@ myapp.config(function ($routeProvider, $locationProvider) {
         templateUrl: "Views/page.html",
         controller: "pageController"
             
-    }).otherwise({
+    }).when("/about",
+    {
+        templateUrl: "Views/about.html",
+        controller: "aboutPageController"
+    }).when("/contact",
+    {
+        templateUrl: "Views/contact.html",
+        controller: "contactPageController"
+    }).when("/newpost",
+    {
+        templateUrl: "Views/createpost.html",
+        controller: "newPostController"
+    })
+
+        .otherwise({
         redirectTo: "/"
     })
    

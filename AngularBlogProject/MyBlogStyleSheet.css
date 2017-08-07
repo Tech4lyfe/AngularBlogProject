@@ -9,3 +9,128 @@ input[disabled="disabled"]{
     opacity: 0.4;
     cursor: not-allowed !important;
 }
+
+body{
+      /* Typography Declarations */
+    color: black;
+    font-size: 2em;
+    font-family: "Open Sans", "Times New Roman", sans-serif;
+  margin: 0px;
+}
+
+a {
+	font-weight: bold;
+	text-decoration: none;
+	color: #693587;
+  
+}
+
+/* -------Pseudo Classes-------*/
+
+a:hover {
+	color: #9157B3;
+}
+
+a:visited {
+	color: #642687;
+}
+
+.masthead-intro,
+.masthead-heading,
+.content-footer{
+  text-align: center;
+  
+}
+
+
+.masthead {
+  padding:6em 0;
+  background-image:url(https://static.pexels.com/photos/24179/pexels-photo.jpg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  border-top: solid 1em #D0D0D0;
+  background-position:100% 30%;
+}
+
+.masthead-intro {
+    margin-bottom: 1em;
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 2em;
+    
+}
+
+.masthead-heading {
+    margin-top: -0.2em;
+    font-family: "Orbitron", "Times New Roman", sans-serif;
+    font-weight: bold;
+    font-size: 3em;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 8px #851DF5; /*h-s, v-s, blur-radius, color */
+  
+}
+
+
+.introduction-section,
+.location-section,
+.questions-section {
+    max-width:38em; /*defines the width of content*/
+    margin-left:auto; /*centers the content, requires a defined width*/
+    margin-right:auto;/*centers the content, requires a defined width*/
+  margin-top:2em; /*adds more space between elements */
+}
+
+
+
+.social > li{
+  list-style:none;
+  display:inline-block;
+  margin-right:1em;  
+}
+
+.content-footer{
+  background-color:#BBBEBF;
+  padding:4em;
+  margin-top:5em;
+}
+
+.content-footer > p {
+    color:black;
+   
+}
+
+.introduction-section > p,
+.location-section > p,
+.content-footer > p {
+    /* Typography Declarations */
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+.questions-section > h2 {
+    /* Typography Declarations */
+    font-family: "Gentium Book Basic", Georgia, serif;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+section > h1 {
+    margin-top: 2em;
+}
+
+
+
+
+
+
+
+/* -------Media Querys-------*/
+
+@media only screen and (max-width: 500px) {
+    .masthead-heading {
+        font-size: 3em;
+    }
+  .masthead {
+        padding: 3em 0;
+    }
+}

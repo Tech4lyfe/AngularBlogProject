@@ -1,0 +1,44 @@
+﻿<h1>New Post </h1>
+<div>
+
+</div>
+
+
+
+<div ng-controller="newPostController">
+
+
+    <form name="postform" novalidate>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" ng-model="name" name="postname" class="form-control" placeholder="Enter Name" ng-required="true" />
+            <div ng-show="postform.postname.$touched && postform.postname.$invalid">
+                <small style="color:red; display:block; text-align:center">Please enter a name</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" ng-model="title" name="posttitle" class="form-control" placeholder="Enter Title" ng-required="true" />
+            <div ng-show="postform.posttitle.$touched && postform.posttitle.$invalid">
+                <small style="color:red; display:block; text-align:center">Please enter a title</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea class="form-control" ng-required="true" name="content" ng-model="content" rows="5" id="comment"></textarea>
+            <div ng-show="postform.content.$touched && postform.content.$invalid">
+                <small style="color:red; display:block; text-align:center">Please enter content</small>
+            </div>
+        </div>
+        <button type="submit" ng-click="newPost()" ng-disabled="postform.$invalid" class="btn btn-primary">Submit</button>
+    </form>
+    <h3>Posts</h3>
+    <div ng-repeat="post in myposts">
+        <h3> {{post.title}}</h3>
+        <p>{{post.content}}</p>
+        <p>{{post.name}}</p>
+    </div>
+  
+</div>

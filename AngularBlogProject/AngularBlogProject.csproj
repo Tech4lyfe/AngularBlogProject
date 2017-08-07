@@ -255,6 +255,9 @@
     <Content Include="Scripts\app\app.viewmodel.js" />
     <Content Include="Scripts\app\common.js" />
     <Content Include="Scripts\app\home.viewmodel.js" />
+    <Content Include="Views\about.html" />
+    <Content Include="Views\contact.html" />
+    <Content Include="Views\createpost.html" />
     <Content Include="Views\page.html" />
     <Content Include="Views\post.html" />
     <Content Include="Views\singlepost.html" />
