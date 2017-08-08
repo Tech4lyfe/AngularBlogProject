@@ -1,6 +1,10 @@
-﻿<h1>{{post.title}}</h1>
-<p>{{post.content}}</p>
-
+﻿
+<div>
+    <h1>{{post.Title}}</h1>
+    <p>{{post.Content}}</p>
+   Created: <p>{{post.CreatedDate}}</p>
+   Author: <p>{{post.Author}}</p>
+</div>
 <div ng-controller="commentController" >
 <form name="commentform" ng-submit="submit()" novalidate>
     <div class="form-group">

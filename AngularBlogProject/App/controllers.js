@@ -12,11 +12,16 @@ angular.module("app.controllers", ["app.directives"])
         getAllPosts();
 
 
-    }).controller("singlePostController", function ($scope, $http, $routeParams) {
-           $http.get("data/post.json").then(function (response) {
-               $scope.post = response.data[$routeParams.id];
-           })
-       }).controller("pageController", function ($scope, $http, $routeParams) {
+       }).controller("singlePostController", function ($scope, $http, $routeParams) {
+           var onSuccess = function (response) { $scope.post = response.data[$routeParams.id] }
+           var onFailure = function (reason) { $scope.error = reason }
+           var getSinglePost = function () {
+            $http.get(url).then(onSuccess, onFailure);
+        };
+        getSinglePost();
+
+      
+    }).controller("pageController", function ($scope, $http, $routeParams) {
 
 
            $http.get("data/pages.json").then(function (response) {
