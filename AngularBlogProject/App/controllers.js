@@ -1,12 +1,18 @@
 ﻿/// <reference path="C:\Github\AngularBlogProject\AngularBlogProject\Scripts/angular.min.js" />
+
+var url = "http://localhost:64190/api/posts";
 angular.module("app.controllers", ["app.directives"])
        .controller("postController", function ($scope, $http) {
+        $scope.firstname = "TJ";
+           var onSuccess = function (response) { $scope.posts = response.data }
+           var onFailure = function (reason){$scope.error = reason}
+        var getAllPosts = function() {
+            $http.get(url).then(onSuccess, onFailure);
+        };
+        getAllPosts();
 
-           $http.get("data/post.json").then(function (response) {
-               $scope.posts = response.data
-           })
 
-       }).controller("singlePostController", function ($scope, $http, $routeParams) {
+    }).controller("singlePostController", function ($scope, $http, $routeParams) {
            $http.get("data/post.json").then(function (response) {
                $scope.post = response.data[$routeParams.id];
            })
