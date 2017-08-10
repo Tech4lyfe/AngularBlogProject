@@ -6,30 +6,32 @@
    Author: <p>{{post.Author}}</p>
 </div>
 <div ng-controller="commentController" >
-<form name="commentform" ng-submit="submit()" novalidate>
+<form name="commentform" ng-submit="SendData(comment)" novalidate>
     <div class="form-group">
         <label for="name">Name:</label>
-        <input type="text" ng-model="name" name="commentname" class="form-control" placeholder="Enter Name" ng-required="true"/>
+        <input type="text"   ng-model="comment.Name" name="commentname" class="form-control" placeholder="Enter Name" ng-required="true"/>
         <div ng-show="commentform.commentname.$touched && commentform.commentname.$invalid">
             <small style="color:red; display:block; text-align:center">Please enter a name</small>
         </div>
     </div>
     <div class="form-group">
         <label for="comment">Comment:</label>
-        <textarea class="form-control"ng-required="true" name="comment" ng-model="text" rows="5" id="comment"></textarea>
+        <textarea class="form-control"ng-required="true" name="comment" ng-model="comment.Description" rows="5" ></textarea>
         <div ng-show="commentform.comment.$touched && commentform.comment.$invalid">
             <small style="color:red; display:block; text-align:center">Please submit a comment</small>
         </div>
     </div>
-    <button type="submit"  ng-disabled="commentform.$invalid" class="btn btn-primary">Submit</button>
+   
+     <button type="submit"  ng-disabled="commentform.$invalid" class="btn btn-primary">Submit</button>
+   
 </form>
-    {{comment.length}}
+   
     <h3>Comments</h3>
     <div >
         <ul>
             <li class="" ng-repeat="comment in comments">
 
-                <h5>{{comment.name}}</h5>
+                
                 <h5>{{comment.text}}</h5>
                 <button type="button" ng-click="drop(comment)" class="btn btn-danger">Delete</button>
             </li>

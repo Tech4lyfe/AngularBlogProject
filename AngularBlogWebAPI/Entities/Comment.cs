@@ -10,8 +10,8 @@ namespace AngularBlogWebAPI.Entities
     {
         public int CommentId { get; set; }
         public string Name { get; set; }
-        public string description { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public string Description { get; set; }
+        public DateTimeOffset? CreatedDate { get; set; }
         public Post Post { get; set; }
         public int PostId { get; set; }
 

@@ -13,7 +13,7 @@ namespace AngularBlogWebAPI.Entities
         public string Content { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTimeOffset? CreatedDate { get; set; }
         public List<Comment> Comments { get; set; }
 
         public Post()
