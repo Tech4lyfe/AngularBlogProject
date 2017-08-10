@@ -1,4 +1,4 @@
-﻿var myapp = angular.module("myApp", ["ngRoute", "app.controllers", "AngularBlogPostService"]);
+﻿var myapp = angular.module("myApp", ["ngRoute", "app.controllers", "AngularBlogPostService", "AngularBlogCommentService"]);
 myapp.config(function ($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('');
     $routeProvider

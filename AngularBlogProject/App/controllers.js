@@ -1,6 +1,9 @@
 ﻿/// <reference path="C:\Github\AngularBlogProject\AngularBlogProject\Scripts/angular.min.js" />
 
 var url = "http://localhost:64190/api/posts";
+var commentPostUrl = "http://localhost:64190/api/comments";
+
+
 angular.module("app.controllers", ["app.directives"])
     .controller("postController",
         function($scope, $http, postService) {
@@ -21,35 +24,48 @@ angular.module("app.controllers", ["app.directives"])
 
             $http.get("data/pages.json").then(function(response) {
                 $scope.page = response.data[$routeParams.id];
-            })
+            });
         }).controller("commentController",
         function($scope, $http, $routeParams) {
 
             var createdDate = new Date();
             createdDate.getTime();
 
-            $http.get("http://localhost:64190/api/posts").then(function(response) {
+            $http.get(commentPostUrl).then(function (response) {
+                $scope.comments = response.data;
+            });
+
+            $http.get(url).then(function(response) {
                 $scope.postId = response.data[$routeParams.id];
             });
 
-            var commentPostUrl = "http://localhost:64190/api/comments";
+            var reset = function () {
+                $scope.comment = {};
+                $scope.commentForm.commentname.$touched = false;
+                $scope.commentform.comment.$touched = false;
+            };
+
 
             $scope.SendData = function(data) {
-
+                
                 var comment = {
                     Name: data.Name,
                     Description: data.Description,
                     CreatedDate: createdDate,
                     PostId: $scope.postId.PostId
                 };
-
+ 
                 $http.post(commentPostUrl, comment)
                     .then(function(response) {
                         $scope.value = response;
+                       reset();
                     })
                     .error(function(error) {
                         alert(error);
                     });
+
+              
+
             }
 
         }).controller("aboutPageController",
