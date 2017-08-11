@@ -26,12 +26,16 @@ angular.module("app.controllers", ["app.directives"])
                 $scope.page = response.data[$routeParams.id];
             });
         }).controller("commentController",
-        function($scope, $http, $routeParams) {
-
+        function($scope, $http, $routeParams,commentService) {
+            $scope.comments = [];
             var createdDate = new Date();
             createdDate.getTime();
-
+                
             $http.get(commentPostUrl).then(function (response) {
+                $scope.commentId = response.data[$routeParams.id];
+            });
+
+            $http.get(commentPostUrl).then(function(response) {
                 $scope.comments = response.data;
             });
 
@@ -39,7 +43,7 @@ angular.module("app.controllers", ["app.directives"])
                 $scope.postId = response.data[$routeParams.id];
             });
 
-            var reset = function () {
+            var reset = function() {
                 $scope.comment = {};
                 $scope.commentForm.commentname.$touched = false;
                 $scope.commentform.comment.$touched = false;
@@ -47,26 +51,31 @@ angular.module("app.controllers", ["app.directives"])
 
 
             $scope.SendData = function(data) {
-                
+
                 var comment = {
                     Name: data.Name,
                     Description: data.Description,
                     CreatedDate: createdDate,
                     PostId: $scope.postId.PostId
                 };
- 
+
                 $http.post(commentPostUrl, comment)
-                    .then(function(response) {
+                    .then(function (response) {
                         $scope.value = response;
-                       reset();
+                        $scope.comments.unshift(comment);
+                        reset();
                     })
                     .error(function(error) {
                         alert(error);
                     });
-
-              
-
             }
+
+            $scope.deletePost = function (comment,index) {
+                 commentService.delete({ id: $scope.commentId.CommentId });
+               
+                 $scope.comments.splice(index, 1);
+  
+            };
 
         }).controller("aboutPageController",
         function($scope) {

@@ -30,6 +30,6 @@
     <div ng-controller="commentController" ng-repeat="comment in comments" >
                 <h5>{{comment.Name}}</h5>
                 <p>{{comment.Description}}</p>
-                <button type="button" ng-click="drop(comment)" class="btn btn-danger">Delete</button>
+                <button type="submit" ng-click="deletePost(comment,$index)" class="btn btn-danger">Delete</button>
     </div>
 </div>
