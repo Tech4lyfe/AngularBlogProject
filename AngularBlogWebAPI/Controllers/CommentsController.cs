@@ -30,12 +30,13 @@ namespace AngularBlogWebAPI.Controllers
         }
 
         // POST: api/Comments
-        public void Post([FromBody]Comment comment)
+        public IHttpActionResult Post([FromBody]Comment comment)
         {
-            
-              db.Comments.Add(comment);
+
+            var newCommentEntity = db.Comments.Add(comment);
             db.SaveChanges();
 
+            return Ok(newCommentEntity);
         }
 
         // PUT: api/Comments/5

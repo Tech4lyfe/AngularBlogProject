@@ -30,10 +30,12 @@ namespace AngularBlogWebAPI.Controllers
         }
 
         // POST: api/Posts
-        public void Post([FromBody] Post post)
+        public IHttpActionResult Post([FromBody] Post post)
         {
-            db.Posts.Add(post);
+          var newPostEntity =  db.Posts.Add(post);
             db.SaveChanges();
+
+            return Ok(newPostEntity);
         }
 
         // PUT: api/Posts/5
@@ -45,11 +47,13 @@ namespace AngularBlogWebAPI.Controllers
         }
 
         // DELETE: api/Posts/5
-        public void Delete(int id)
+       
+        public IHttpActionResult Delete(int id)
         {
             var post = db.Posts.First(x => x.PostId == id);
             db.Posts.Remove(post);
             db.SaveChanges();
+            return Ok(new {message="Delete Post"});
         }
     }
 }
