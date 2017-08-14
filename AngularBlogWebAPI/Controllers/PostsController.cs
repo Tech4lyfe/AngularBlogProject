@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using AngularBlogWebAPI.DbContext;
 using AngularBlogWebAPI.Entities;
- using System.Data.Entity;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 
 namespace AngularBlogWebAPI.Controllers
@@ -15,45 +15,101 @@ namespace AngularBlogWebAPI.Controllers
     {
         AngularBlogDbContext db = new AngularBlogDbContext();
         // GET: api/Posts
-        public IEnumerable<Post> Get()
+        public IHttpActionResult Get()
         {
-            var posts = db.Posts.ToList();
-            return posts;
+            try
+            {
+                var posts = db.Posts.ToList();
+                return Ok(posts);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         // GET: api/Posts/5
-        public Post Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            var post = db.Posts.First(x => x.PostId == id);
-            return post;
-            
+            try
+            {
+                var post = db.Posts.First(x => x.PostId == id);
+                if (post == null)
+                {
+                    return NotFound();
+                }
+                return Ok(post);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
         }
 
         // POST: api/Posts
         public IHttpActionResult Post([FromBody] Post post)
         {
-          var newPostEntity =  db.Posts.Add(post);
-            db.SaveChanges();
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                var newPostEntity = db.Posts.Add(post);
+                db.SaveChanges();
 
-            return Ok(newPostEntity);
+                return Ok(newPostEntity);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         // PUT: api/Posts/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(int id, [FromBody]string value)
         {
-            var post = db.Posts.First(x => x.PostId == id);
-            db.Posts.AddOrUpdate(post);
-            db.SaveChanges();
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState); 
+                }
+                var post = db.Posts.First(x => x.PostId == id);
+                if (post == null)
+                {
+                    return BadRequest("Post cannot be null");
+                }
+                db.Posts.AddOrUpdate(post);
+                db.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         // DELETE: api/Posts/5
-       
+
         public IHttpActionResult Delete(int id)
         {
-            var post = db.Posts.First(x => x.PostId == id);
-            db.Posts.Remove(post);
-            db.SaveChanges();
-            return Ok(new {message="Delete Post"});
+            try
+            {
+                var post = db.Posts.First(x => x.PostId == id);
+                if (post == null)
+                {
+                    return BadRequest("Post cannot be null");
+                }
+                db.Posts.Remove(post);
+                db.SaveChanges();
+                return Ok(new {message = "Deleted Post"});
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 }
