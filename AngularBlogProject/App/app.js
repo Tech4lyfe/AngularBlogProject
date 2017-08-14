@@ -6,18 +6,18 @@ myapp.config(function ($routeProvider, $locationProvider) {
     {
         templateUrl: "Views/post.html",
         controller: "postController"
-       
+
 
     }).when("/post/:id",
     {
         templateUrl: "Views/singlepost.html",
-        controller:"singlePostController"
+        controller: "singlePostController"
 
     }).when("/page/:id",
     {
         templateUrl: "Views/page.html",
         controller: "pageController"
-            
+
     }).when("/about",
     {
         templateUrl: "Views/about.html",
@@ -33,7 +33,7 @@ myapp.config(function ($routeProvider, $locationProvider) {
     })
 
         .otherwise({
-        redirectTo: "/"
-    })
-   
+            redirectTo: "/"
+        })
+
 });
